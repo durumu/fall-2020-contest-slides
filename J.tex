@@ -1,16 +1,132 @@
 \section{J}%
+ \setcounter{MaxMatrixCols}{20}
 \label{sec:j}
 
 \begin{frame}
-  \frametitle{Problem J: History Lesson}
+  \frametitle{Problem J: Just Jingling}
 
   \begin{itemize}
     \item First solve at 00:17 by \textbf{whatever} (Chinh Luu and Matthew Tran)
-    \item Straightforward implementation problem
-    \item Just use a hashmap mapping strings to lists
-    \item \texttt{unordered\_map<string, vector<string>>} in C++
-    \item \texttt{collections.defaultdict(list)} in Python
-    \item Some teams struggled with sorting the list alphabetically
+    \item Given a lyric, how many times do we have to write it in a spiral to arrive back at the original lyric?
+    \item Observation: we can reduce the problem to writing the integers $1\dots n$ in a spiral
+      \begin{itemize}
+        \item The fact that the input is simply the \textit{length} of the lyric should point to this observation
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem J: Just Jingling (cont.)}
+
+  \begin{itemize}
+    \item Observation: we can reduce the problem to writing the integers $1\dots n$ in a spiral
+    \item Let's try $n=13$ (sample case 3)
+      \[
+        \begin{array}{cccc}
+            &    &   & 13\\
+          5 & 4  & 3 & 12\\
+          6 & 1 & 2 & 11\\
+          7 & 8 & 9 & 10
+        \end{array}
+        \mapsto
+        \begin{array}{cccc}
+            &    &   & 10\\
+          12 & 3  & 4 & 9\\
+          6 & 13 & 5 & 8\\
+          1 & 2 & 11 & 7
+        \end{array}
+        \mapsto
+        \begin{array}{cccc}
+            &    &   & 7\\
+          9 & 4  & 3 & 11\\
+          6 & 10 & 12 & 2\\
+          13 & 5 & 8 & 1
+        \end{array}
+      \]
+      \[
+        \mapsto
+        \begin{array}{cccc}
+            &    &   & 1\\
+          11 & 3  & 4 & 8\\
+          6 & 7 & 9 & 5\\
+          10 & 12 & 2 & 13
+        \end{array}
+        \mapsto \cdots \mapsto
+        \begin{array}{cccc}
+            &    &   & 13\\
+          5 & 4  & 3 & 12\\
+          6 & 1 & 2 & 11\\
+          7 & 8 & 9 & 10
+        \end{array}
+      \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem J: Just Jingling (Cont.)}
+  \begin{itemize}
+    \item Let's relabel so that our original spiral looks like
+      \[
+      \begin{array}{cccc}
+          &    &   & 1\\
+        2 & 3  & 4 & 5\\
+        6 & 7 & 8 & 9\\
+        10 & 11 & 12 & 13
+      \end{array}\mapsto
+      \begin{array}{cccc}
+            &    &   & 13\\
+          5 & 4  & 3 & 12\\
+          6 & 1 & 2 & 11\\
+          7 & 8 & 9 & 10
+        \end{array}
+      \]
+      Then the spiral induces a permutation on these elements, and we continue applying the permutation over
+      and over again until it comes back to the original order.
+    \item We can think of the permutation as a function $f$ from the integers $1\dots n$ to the
+        integers $1\dots n$ that is one-to-one. It looks like
+      \[ 
+        \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+        13 & 5 & 4 & 3 & 12 & 6 & 1 & 2 & 11 & 7 & 8 & 9 & 10 \end{pmatrix}
+      \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem J: Just Jingling (Cont.)}
+  \begin{itemize}
+    \item Then iterating the spiral process is equivalent to composing this function with itself multiple times.
+      For example, the second spiral we write will be 
+      \[ f\circ f = \]
+      \[
+      \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+      13 & 5 & 4 & 3 & 12 & 6 & 1 & 2 & 11 & 7 & 8 & 9 & 10 \end{pmatrix}
+      \]
+      \[
+      \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+      13 & 5 & 4 & 3 & 12 & 6 & 1 & 2 & 11 & 7 & 8 & 9 & 10 \end{pmatrix}
+    \]
+      \[
+      =
+    \]
+    \[
+      \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+      10 & 12 & 3 & 4 & 9 & 6 & 13 & 5 & 8 & 1 & 2 & 11 & 7 \end{pmatrix}
+    \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem J: Just Jingling (Cont.)}
+  \begin{itemize}
+    \item But notice that, in composing this permutation with itself many times, we will end up with 
+      some elements cycling to each other. It will look like this:
+      \begin{align*}
+        f &= \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+      13 & 5 & 4 & 3 & 12 & 6 & 1 & 2 & 11 & 7 & 8 & 9 & 10 \end{pmatrix}\\
+        &= (1,13,10,7)(2,5,12,9,11,8)(3,4)(6)
+      \end{align*}
+    \item These numbers will cycle, and we want to know when they are all \textit{simultaneously}
+      at the beginning of the cycle, so we should just take the least common multiple of the cycle lengths!
   \end{itemize}
 \end{frame}
 

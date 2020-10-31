@@ -1,18 +1,19 @@
 \section{B}%
-\label{sec:b}
+\label{sec:B}
 
 \begin{frame}
-  \frametitle{Problem B: License Plates}
-
+  \frametitle{Problem B: Build a snowman!}
   \begin{itemize}
-    \item First solve at 00:08 by \textbf{whatever} (Chinh Luu and Matthew Tran)
-    \item Straightforward implementation
-    \item \textbf{Potential pitfall}: no vowels or the letter Q
-    \item Not represented in sample input, so a lot of WAs from this
+    \item First solve at xx:yy by \textbf somebody
+    \item Observation: any values in between the first and the last values in the build array does not contribute to the sturdiness factor at all.\\
+    $\frac{a_2}{a_1} * \frac{a_3}{a_2} * \frac{a_4}{a_3} * ... * \frac{a_{n-1}}{a_{n-2}} * \frac{a_n}{a_{n-1}} = \frac{a_n}{a_1}$
+    \item If we choose the maximum radius as $a_n$ and the minimum radius as $a_1$, the sturdiness factor will be maximized.
+    \item Potential pitfall: The answer has to be precise to $10^-6$. Your answer could be considered wrong if you don't print enough decimal digits. For example: $2.62$ is interpreted as $2.6200000$ while the correct answer can be $2.6200011$.
   \end{itemize}
 \end{frame}
 
+
 \begin{frame}
-  \frametitle{Problem B: Python Solution}
-  \pyf{B}
+	\frametitle{Problem B: C++ solution}
+	\cppf{B}
 \end{frame}
