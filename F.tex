@@ -2,42 +2,45 @@
 \label{sec:f}
 
 \begin{frame}
-  \frametitle{Problem F: Garden Growth}
+  \frametitle{Problem F: Flummoxing Map}
 
   \begin{itemize}
-    \item First solve at 00:58 by \textbf{whatever} (Chinh Luu and Matthew Tran)
-    \item Suppose a pot is initially empty. For a query from $a$ to $b$, we can prove by induction that the pot is empty if and only if there is
-      an even number of friends in this range who try to put a plant in it.
-    \item Consider the state of the pot, then, as a 0 or 1. We can notice that this property is exactly equivalent to the exclusive-or operation.
-    \item \[ \underbrace{1 \oplus 1 \oplus \cdots \oplus 1}_{\text{even number of 1's}} = 0,\quad\text{and}\quad
-      \underbrace{1 \oplus 1 \oplus \cdots \oplus 1}_{\text{odd number of 1's}} = 1. \]
+    \item First solve at 00:58 by \textbf{0e4ef622} (Matthew Tran)
+    \item Tricky problem, but lots of ways to solve it if you observe one of 2 things
+    \item \textbf{Observation}: There are only 8 possible maps!
+    \item \textbf{Observation}: This is just a linear transformation on the coordinates!
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem F: Garden Growth (continued)}
+  \frametitle{Problem F: 8 Maps}
   \begin{itemize}
-      \item We can do this operation on a $k$-bit number, and represent the state of each pots as each of one of the $k$ bits
-      \item The problem is reduced to quickly answering xor queries on an array $A$ 
-      \item Exploit another property of xor: $x \oplus x = 0$ for all $x$
-    \item We can precompute the cumulative xors
-      from $A[0\dots i]$ for all $i$. Call that $C[i]$. Then the answer to a query is the number of bits set in the number \[ A[a...b] \oplus y = C[b] \oplus C[a-1] \oplus y, \]
-      where $y$ is the initial state of the pots.
+    \item We can uniquely identify a map by a rotation and whether it is mirrored
+    \item Can think of this as a graph where the transformations are edges and there are 8 vertices
+    \item You can convince yourself of this by trying various combinations of rotations and flips
+    \item Or if you're into math you can prove it with group theory, I guess
+    \item You can explicitly generate these maps, or just transform the coordinates depending on state
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem F: C++ Solution}
+  \frametitle{Problem F: 8 Maps Solution}
+  \pyf{F}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem F: Linear Transformation}
+  \begin{itemize}
+    \item If input coordinates are $i$, $j$, then mirroring changes them to $i$, $n-j+1$
+    \item Rotating CCW replaces them with $j$, $n-i+1$
+    \item Similar situation for flipping and rotating CW
+    \item These are actually just 2x2 matrices
+    \item Can just multiply a long string of 2x2 matrices to get our result
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem F: Linear Transformation Solution}
   \cppf{F}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Problem F: C++ Solution (continued)}
-  \cppf{F2}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Problem F: C++ Solution (continued)}
-  \cppf{F3}
 \end{frame}
