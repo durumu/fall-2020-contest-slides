@@ -2,26 +2,25 @@
 \label{sec:c}
 
 \begin{frame}
-  \frametitle{Problem C: Perfect Shuffle}
+  \frametitle{Problem C: Cold War}
 
   \begin{itemize}
-    \item First solve at 00:14 by \textbf{whatever} (Chinh Luu and Matthew Tran)
-    \item Straightforward implementation problem
-    \item Must find out number of ``perfect shuffles'' needed to return a deck to its original position
-    \item Easy way to solve is to ``unshuffle'' the deck instead of ``shuffling'' it
+    \item First solve at 00:27 by \textbf{Jonathan1234} (Naixin Zong)
+    \item Implementation problem: figure out if you can make it out of a duel without getting shot
+    \item One possible solution: try shooting everyone and see what happens 
     \item Complexity: $O(n^2)$
+    \item Another possible solution: order everyone by reaction time, then step through until your turn
+    \item Complexity: $O(n \log n)$
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem C: $O(n^2)$ Unshuffling Solution}
-
-  \pyf{C}
+  \frametitle{Problem C: $O(n^2)$ try-everyone solution}
+  \pyf{Cbrute}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem C: $O(n)$ Number Theory Solution}
-
-  \cppf{Cmod}
+  \frametitle{Problem C: $O(n \log n)$ ordering solution}
+  \pyf{Cfast}
 \end{frame}
