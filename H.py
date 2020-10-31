@@ -1,12 +1,13 @@
-from collections import deque
+n = int(input())
+a = input().split()
+m = int(input())
+b = input().split()
 
-n, m = map(int, input().split())
-g = [ [] for _ in range(n) ]
+for i in range(n-1, -1, -1):
+    suf = a[i:]
+    pref = b[:min(n-i, len(b))]
+    if suf == pref:
+        print(' '.join(a), ' '.join(b[min(n-i, len(b)):]))
+        exit(0)
 
-for i in range(m):
-    u, v = map(int, input().split())
-    u -= 1
-    v -= 1
-    g[u].append(v)
-    g[v].append(u)
-
+print('HOLIDAYS RUINED')
