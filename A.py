@@ -1,2 +1,1 @@
-n = int(input())
-print('howdyeverybodyyallaregreat'[:n])
+print(input(), 'I AM READY')
