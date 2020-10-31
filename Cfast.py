@@ -1,7 +1,6 @@
 n = int(input())
 a = [None] + [int(x) for x in input().split()]
 d = [int(x) for x in input().split()]
-
 for i in sorted(range(n+1), key=lambda i: d[i]):
   if i == 0:
     break
