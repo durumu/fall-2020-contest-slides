@@ -1,13 +1,13 @@
 n = int(input())
-a = input().split()
+beginning = input().split()
 m = int(input())
-b = input().split()
+ending = input().split()
 
 for i in range(n-1, -1, -1):
-    suf = a[i:]
-    pref = b[:min(n-i, len(b))]
+    suf = beginning[i:]
+    pref = ending[:min(n-i, len(ending))]
     if suf == pref:
-        print(' '.join(a), ' '.join(b[min(n-i, len(b)):]))
+        print(' '.join(beginning), ' '.join(ending[min(n-i, len(ending)):]))
         exit(0)
 
 print('HOLIDAYS RUINED')
