@@ -2,15 +2,15 @@
 \label{sec:d}
 
 \begin{frame}
-  \frametitle{Problem D: Fence Posts}
+  \frametitle{Problem D: Dubious Logs}
 
   \begin{itemize}
     \item First solve at 00:22 by \textbf{whatever} (Chinh Luu and Matthew Tran)
-    \item Formally, we want a sequence such that the longest increasing subsequence is of length $a$, but the greedy algorithm described gives an increasing subsequence of length $b$
-    \item You may observe that the greedy algorithm always takes the first fence post. Let's exploit this.
-    \item It turns out that we can come up with a sequence of length $a+1$ which works on general. Given $a$ and $b$: $a-b+2$, $1$, $2$, $3$, $\dots$, $a$.
-    \item For example, if $a=10$, $b=5$, we get $7$, $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$, $9$, $10$.
-    \item \textbf{Potential pitfall:} there are many constructions, but if yours uses more than 150 numbers you will get WA
+    \item We can reduce the problem to the following: given a list $a$ and a list $l$,
+      match each element of $l$ to an element of $a$ that is less than or equal to it.
+    \item \textbf{Observation:} it is never worse to assign an element of $l$ closest
+      element of $a$ less than or equal to it that we have not already assigned, so we
+      can just sort both lists and try this assignment.
   \end{itemize}
   \pyf{D}
 \end{frame}
