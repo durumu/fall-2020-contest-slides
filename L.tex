@@ -1,0 +1,54 @@
+\section{L}%
+\label{sec:l}
+
+\begin{frame}
+  \frametitle{Problem L: Obstacle Course}
+
+  \begin{itemize}
+    \item First solve at 00:57 by \textbf{yeetmoney} (Yamen Almasalmeh and Reggie Frank)
+    \item Want to know the number of distinct paths through a string
+    \item We can either go to the next position, or jump forward to the next
+      same character \textit{at most} $k$ times
+    \item \textbf{Insight:} this problem lends itself to recursive thinking:
+      \begin{itemize}
+        \item ``If I am at index $i$, where could I have come from?''
+        \item The answer is that you either came from the previous index, or the last index which has the same character
+        \item Denote by $f(i, j)$ the number of paths ending at index $i$ which jump forward exactly $j$ times
+        \item Denote by $prev(i)$ the previous location of the character at $i$ (if it exists)
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem L: Obstacle Course (continued)}
+  \begin{itemize}
+    \item Denote by $f(i, j)$ the number of paths ending at index $i$ which jump forward exactly $j$ times
+    \item Denote by $prev(i)$ the previous location of the character at $i$ (if it exists)
+    \item \[
+        f(i, j) = \begin{cases}
+          f(i-1, j), & $j = 0$\\
+          f(i-1, j), & \text{$prev(i)=i-1$ or DNE}\\
+          f(i-1, j) + f(prev(i), j-1), & \text{otherwise.}
+        \end{cases}
+      \]
+    \item We also have the base case: $f(0, j) = [j=0]$
+    \item Can solve this recurrence with dynamic programming
+    \item \textbf{Potential pitfall:} Must handle the base case, and also the special cases of the recurrence
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem L: Python Solution, Top-Down DP}
+  \pyf{Ltop}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem L: Python Solution, Top-Down DP (continued)}
+  \pyf{Ltop1}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem L: Python Solution, Bottom-Up DP}
+  \pyf{Lbot}
+\end{frame}

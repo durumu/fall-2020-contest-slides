@@ -1,0 +1,11 @@
+\frametitle{Problem I: Square Weed Whacker}
+
+  \begin{itemize}
+    \item First solve at 00:00 by \textbf{WestonReed} (Weston Reed)
+    \item We want the largest square such that every \texttt{.} can be covered without the square touching a \texttt{#}
+    \item One option is to binary search on square side length
+    \item A cleaner approach uses a really nice insight: the side length is upper bounded by the shortest vertical or horizontal sequence of \texttt{.}
+    \item A quick proof by contradiction (or a proof by AC) shows that we can attain this upper bound
+  \end{itemize}
+
+  \pyf{I}

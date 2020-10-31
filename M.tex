@@ -1,0 +1,22 @@
+\section{M}%
+\label{sec:m}
+
+\begin{frame}
+  \frametitle{Problem M: Family Photo}
+
+  \begin{itemize}
+    \item First solve at 00:05 by \textbf{whatever} (Chinn Luu and Matthew Tran)
+    \item Line up your family in non-decreasing order
+    \item \textbf{Insight}: You can only control the orderings of the family members of equal height
+    \item If there are $k$ people with height $h$, then there are $k!$ ways to order people of that height
+    \item Multiply $k!$ together for each height and you will have the solution
+    \item \textbf{Potential pitfall}: You have to take your solution mod 998244353 at intermediate steps as well
+    \item Otherwise, your solution will TLE (if Python) or overflow (if C++/Java)
+    \item Total complexity: $O(n)$ using hashmaps
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem M: Solution}
+  \pyf{M}
+\end{frame}

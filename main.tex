@@ -1,0 +1,72 @@
+\documentclass{beamer}
+\usepackage{listings}
+\usepackage{textcomp}
+
+% Listings
+    \definecolor{dkgreen}{rgb}{0,0.6,0}
+    \definecolor{gray}{rgb}{0.5,0.5,0.5}
+    \definecolor{mauve}{rgb}{0.58,0,0.82}
+
+    \lstloadlanguages{[ISO]C++, Python}
+
+    \lstset{frame=tb,
+      upquote=true,
+      language=[ISO]C++,
+      aboveskip=2mm,
+      belowskip=2mm,
+      showstringspaces=false,
+      columns=flexible,
+      basicstyle={\small\ttfamily},
+      numbers=none, % line numbers -- change to "left" if you want them
+      numberstyle=\tiny\color{gray},
+      keywordstyle=\bfseries\color{blue},
+      commentstyle=\itshape\color{dkgreen},
+      stringstyle=\color{mauve},
+      breaklines=true,
+      breakatwhitespace=true,
+      tabsize=2
+    }
+
+    % C++ environment
+    \lstnewenvironment{cpp} {
+      \lstset{
+        language=[ISO]C++,
+        tabsize=2
+      }
+    } {}
+
+    % Python environment
+    \lstnewenvironment{py} {
+      \lstset{
+        language=Python,
+        tabsize=4
+        }
+    } {}
+
+\newcommand{\cppf}[1]{\lstinputlisting{#1.cpp}}
+\newcommand{\pyf}[1]{\lstinputlisting[language=Python, upquote=true]{#1.py}}
+
+\usetheme{Madrid}
+
+\title{Editorial}
+\subtitle{Texas A\&M 2020 Spring Contest}
+\date{\today}
+
+\begin{document}
+
+\input{A.tex} % 0:01
+\input{M.tex} % 0:05
+\input{B.tex} % 0:08
+\input{C.tex} % 0:14
+\input{J.tex} % 0:17
+\input{D.tex} % 0:22
+\input{I.tex} % 0:35
+\input{H.tex} % 0:38
+\input{G.tex} % 0:38
+\input{L.tex} % 0:57
+\input{F.tex} % 0:58
+\input{E.tex} % 1:01
+\input{N.tex} % unsolved
+\input{K.tex} % unsolved
+  
+\end{document}

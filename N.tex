@@ -1,0 +1,60 @@
+\section{N}%
+\label{sec:n}
+
+\begin{frame}
+  \frametitle{Problem N: Horses in the Back}
+
+  \begin{itemize}
+    \item First solve at 04:25 by \textbf{one man retirement home} (Chris Rech)
+    \item We are given an integer $k$ and a function \[ f(x) = \begin{cases} x/k, & \text{if $k$ divides $x$}\\ x-1, & \text{otherwise} \end{cases}\]
+      \item Let's denote by $len(x)$ the length of the sequence \[ x, f(x), f(f(x)), \dots, f(f(\cdots(x)\cdots)), 1 \]
+    \item We want to find some $x$ such that $len(x)$ is maximal and $1\le x\le m$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem N: Horses in the Back (continued)}
+  \[ f(x) = \begin{cases} x/k, & \text{if $k$ divides $x$}\\ x-1, & \text{otherwise} \end{cases}\]
+  \begin{itemize}
+    \item Let's consider the case when $k=10$
+      \begin{itemize}
+        \item For $x=11$, the sequence is 11, 10, 1.
+        \item For $x=111$, the sequence is 111, 110, 11, 10, 1.
+        \item For $x=2111$, the sequence is 2111, 2110, 211, 210, 21, 20, 2, 1.
+      \end{itemize}
+    \item \textbf{Insight:} After some exploration, we see that when $k=10$, \[ len(x) = (\text{sum of digits in $x$}) + (\text{number of digits in $x$}) - 1. \]
+    \item \textbf{Insight:} It leads us to the idea of considering the numbers in base $k$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem N: Horses in the Back (continued)}
+  \[ f(x) = \begin{cases} x/k, & \text{if $k$ divides $x$}\\ x-1, & \text{otherwise} \end{cases}\]
+  \begin{itemize}
+    \item So let's consider the case when $k=2$ (our favorite base)
+      \begin{itemize}
+        \item For $x=0b1011$, the sequence is 0b1011, 0b1010, 0b101, 0b100, 0b10, 0b1.
+        \item For $x=0b1101011$, the sequence is 0b1101011, 0b1101010, 0b110101, 0b110100, 0b11010, 0b1101, 0b1100, 0b110, 0b11, 0b10, 0b1.
+      \end{itemize}
+    \item \textbf{Insight:} Let $x_k$ be $x$ written in base $k$. It turns out that our observation holds in general, \[ len(x) = (\text{sum of digits in $x_k$}) + (\text{number of digits in $x_k$}) - 1. \]
+    \item \textbf{Insight:} For an intuition for this, we can just realize that this sequence exactly mimics the algorithm for converting between bases
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem N: Horses in the Back (continued)}
+  \begin{itemize}
+    \item We have transformed the problem, but now: how to solve the original?
+    \item Consider $m$ (the maximum allowed value) in base $k$
+    \item Either $m$ is the answer, or the answer is a prefix of $m$ in base $k$ followed by a bunch of $k-1$ digits
+    \item As an example, we go back to $k=10$ since it is our most familiar base
+      \begin{itemize}
+        \item Let's say $m=20$, then our answer is $x=19$
+      \end{itemize}
+    \item \textbf{Potential pitfall:} Consider the case $k=3$, $m=15$
+      \begin{itemize}
+        \item In base 3, we have $m=120$. You may try $x_3=120$ and $x_3=22$, but the best solution is $x_3=112$, whose length is $(2+1+1)+3-1=6$.
+      \end{itemize}
+    \item The hard part of the problem is thinking, and you are probably getting hungry, so we leave the final solution to you :-)
+  \end{itemize}
+\end{frame}

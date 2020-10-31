@@ -1,0 +1,29 @@
+\section{E}%
+\label{sec:e}
+
+\begin{frame}
+  \frametitle{Problem E: Chili Cook-off}
+  \begin{itemize}
+    \item First solve at 01:01 by \textbf{ti123} (Hang Li)
+    \item The event space consists of every possible combination of trucks starting. There are $2^n$, since each truck either starts or doesn't
+    \item Notice that $n \le 10$, so we can use brute force
+    \item You can use recursion, but an easier way is to recognize that each bitmask of length $n$
+      corresponds to a unique event, where person $i$ has a good truck day if bit $i$ is set
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+    \item So let's loop over all bitmasks of length $n$, and for each, we can calculate the probability of this event as \[ \left( \prod_{\text{bit $i$ is 1}} p[i] \right) \left( \prod_{\text{bit $i$ is 0}} (1-p[i]) \right). \]
+    \item Once we have the probability, we determine what place we would get if this event occurs, and add this probability to the output for that place
+    \item Bonus: can you solve it in $O(n^2)$?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem E: C++ Solution}
+  \cppf{E}
+\end{frame}
+\begin{frame}
+  \frametitle{Problem E: C++ Solution (continued)}
+  \cppf{E2}
+\end{frame}

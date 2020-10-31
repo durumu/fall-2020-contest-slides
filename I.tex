@@ -1,0 +1,24 @@
+\section{I}%
+\label{sec:i}
+
+\begin{frame}
+  \frametitle{Problem I: Square Weed Whacker}
+
+  \begin{itemize}
+    \item First solve at 00:35 by \textbf{whatever} (Chinh Luu and Matthew Tran)
+    \item We want the largest square such that every \texttt{.} can be covered without the square touching a \texttt{\#}
+    \item One option is to binary search on square side length and use a prefix sum structure
+    \item A cleaner approach uses a really nice insight: the side length is upper bounded by the shortest vertical or horizontal sequence of $\texttt{.}$
+    \item A quick proof by contradiction (or a proof by AC) shows that we can attain this upper bound:
+      \begin{itemize}
+        \item Let $x$ be the shortest contiguous sequence of vertical or horizontal \texttt{.}
+        \item Clearly, $x$ is an upper bound for the square's side, as otherwise we would definitely go out of bounds or hit a \texttt{\#}
+        \item It remains to show that we can attain $x$. Indeed, if we couldn't, there must be a shorter sequence of \texttt{.} than $x$. But this is a contradiction!
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem I: Python Solution}
+  \pyf{I}
+\end{frame}

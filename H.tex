@@ -1,0 +1,31 @@
+\section{H}%
+\label{sec:h}
+
+\begin{frame}
+  \frametitle{Problem H: Frontage Roads}
+
+  \begin{itemize}
+    \item First solve at 00:38 by \textbf{Skechers by Shawn} (Dhruv Patel and Adil Rasiyani)
+    \item Answer $O(n^2)$ shortest-path queries for an unweighted graph with $n$ nodes
+    \item Best algorithm choice is BFS, but Dijkstra's works as well
+    \item \textbf{Potential pitfall}: BFS is $O(n)$, so running $O(n^2)$ BFSs is too slow
+    \item BFS gives the shortest path to all other vertices
+    \item Run $n$ BFSs up front, one for each vertex, then answer queries
+    \item Total complexity: $O(n^2)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem H: Python Solution}
+  \pyf{H}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem H: Python Solution (continued)}
+  \pyf{H2}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem H: Python Solution (continued)}
+  \pyf{H3}
+\end{frame}
