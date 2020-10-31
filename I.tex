@@ -1,24 +1,56 @@
-\section{I}%
-\label{sec:i}
+\section{X}%
+\label{sec:X}
 
 \begin{frame}
-  \frametitle{Problem I: Square Weed Whacker}
-
+  \frametitle{Problem I: I Want Candy!}
   \begin{itemize}
-    \item First solve at 00:35 by \textbf{whatever} (Chinh Luu and Matthew Tran)
-    \item We want the largest square such that every \texttt{.} can be covered without the square touching a \texttt{\#}
-    \item One option is to binary search on square side length and use a prefix sum structure
-    \item A cleaner approach uses a really nice insight: the side length is upper bounded by the shortest vertical or horizontal sequence of $\texttt{.}$
-    \item A quick proof by contradiction (or a proof by AC) shows that we can attain this upper bound:
-      \begin{itemize}
-        \item Let $x$ be the shortest contiguous sequence of vertical or horizontal \texttt{.}
-        \item Clearly, $x$ is an upper bound for the square's side, as otherwise we would definitely go out of bounds or hit a \texttt{\#}
-        \item It remains to show that we can attain $x$. Indeed, if we couldn't, there must be a shorter sequence of \texttt{.} than $x$. But this is a contradiction!
-      \end{itemize}
+    \item First solve at xx:yy by \textbf somebody
+    \item At first glance, the problem might look familiar. Remember Knapsack problem?
+    \item Let's ignore the special deals for now. We are left with a bunch of candies with happiness values and their prices. Let's find out what is the best deal we can get with $d$ money
+    \item Let $dp[i][j]$ be the biggest happiness values we can get after we have examined the first $i$ candies and used $j$ money
+    \[ dp[i][j] = \begin{cases} dp[i-1][j-p[i]] + h[i], & \text{if we buy the $i^{th}$ candy}\\ dp[i-1][j], & \text{if we don't buy the $i^{th}$ candy} \end{cases}\]
+    \item More precisely: $dp[i][j] = max(dp[i-1][j-p[i]]+h[i],dp[i-1][j])$
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem I: Python Solution}
-  \pyf{I}
+  \frametitle{Problem I: I Want Candy! (continued)}
+   \begin{itemize}
+    \item Now, let's take into account the special deals. Let's look at the following case:\\
+        happiness: 5 7 9 1 2\\
+        price: 8 3 2 10 1\\
+        brand: 1 1 2 2 2\\
+        brand price: 7 11\\
+    \item If we sneak the special deals into the candy arrays like this:\\
+        $[candy|brand]$ happiness: 5 7 \textbf{12} 9 1 2 \textbf{12}\\
+        $[candy|brand]$ price: 8 3 \textbf{7} 2 10 1 \textbf{11}\\
+        $[candy|brand]$ brand: 1 1 \textbf{1} 2 2 2 \textbf{2}\\
+    \item Here, we can almost apply the Knapsack DP. Only 1 constraint left that we need to take care of. That is:
+    \begin{itemize}
+        \item If we buy a candy of a brand, we can't pay the special price to buy all candies of that brand. 
+        \item If we pay the special price to buy all candies of a brand, we can't buy any individual candy in that brand.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem I: I Want Candy! (continued)}
+  \begin{itemize}
+    \item Let's modify the first case of our dp:
+    \[dp[i][j] = dp[\boldsymbol{i-1}][j-p[i]] + h[i], & \text{if we buy the $i^{th} [candy|brand]$}\]
+    \item to:
+    \[dp[i][j] = dp[\boldsymbol{i-k[i]}][j-p[i]] + h[i], & \text{if we buy the $i^{th} [candy|brand]$}\]
+    $i-k[i]$ is the orderly-largest $[candy|brand]$ that can be bought together with the $i^{th} [candy|brand]$
+    \item \[k[i] = \begin{cases} \text{\# of candies of $brand[i]$}, & \text{if a brand}\\ 1, & \text{if a candy} \end{cases}\]
+    \item With this, the constraint discussed in the previous slide is solved.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem I: I Want Candy! (continued)}
+  \begin{itemize}
+    \item \textbf{The tricky part} of this problem is to place the brands and candies into an order that we can perform Knapsack-liked DP 
+    \item Another "not-necessarily-hard" part of this problem is that you should know Knapsack problem :-)
+    \item Although the idea is straightforward, coding up the part "sneak the brands into candy arrays" might be a bit annoying
+  \end{itemize}
 \end{frame}
