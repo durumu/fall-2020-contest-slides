@@ -1,11 +1,11 @@
-from collections import defaultdict
+from math import ceil, gcd
 
-apprentices = defaultdict(list)
+def lcm(x, y):
+  return x // gcd(x, y) * y
 
-for _ in range(int(input())):
-    apprentice, master = input().split()
-    apprentices[master].append(apprentice)
+n = int(input())
+side = ceil(n**0.5)
+if side % 2 == 1:
+  side += 1
 
-for _ in range(int(input())):
-    master = input().strip()
-    print(*sorted(apprentices[master]))
+
