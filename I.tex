@@ -8,7 +8,7 @@
     \item At first glance, the problem might look familiar. Remember Knapsack problem?
     \item Let's ignore the special deals for now. We are left with a bunch of candies with happiness values and their prices. Let's find out what is the best deal we can get with $d$ money
     \item Let $dp[i][j]$ be the biggest happiness values we can get after we have examined the first $i$ candies and used $j$ money
-    \[ dp[i][j] = \begin{cases} dp[i-1][j-p[i]] + h[i], & \text{if we buy the $i^{th}$ candy}\\ dp[i-1][j], & \text{if we don't buy the $i^{th}$ candy} \end{cases}\]
+%    \[ dp[i][j] = \begin{cases} dp[i-1][j-p[i]] + h[i], & \text{if we buy the $i^{th}$ candy}\\ dp[i-1][j], & \text{if we don't buy the $i^{th}$ candy} \end{cases}\]
     \item More precisely: $dp[i][j] = max(dp[i-1][j-p[i]]+h[i],dp[i-1][j])$
   \end{itemize}
 \end{frame}
@@ -37,11 +37,15 @@
   \frametitle{Problem I: I Want Candy! (continued)}
   \begin{itemize}
     \item Let's modify the first case of our dp:
-    \[dp[i][j] = dp[\boldsymbol{i-1}][j-p[i]] + h[i], & \text{if we buy the $i^{th} [candy|brand]$}\]
+    \[dp[i][j] = dp[\boldsymbol{i-1}][j-p[i]] + h[i], \text{if we buy the $i^{th} [candy|brand]$}\]
     \item to:
     \[dp[i][j] = dp[\boldsymbol{i-k[i]}][j-p[i]] + h[i], & \text{if we buy the $i^{th} [candy|brand]$}\]
-    $i-k[i]$ is the orderly-largest $[candy|brand]$ that can be bought together with the $i^{th} [candy|brand]$
-    \item \[k[i] = \begin{cases} \text{\# of candies of $brand[i]$}, & \text{if a brand}\\ 1, & \text{if a candy} \end{cases}\]
+    $i-k[i]$ is the orderly-largest $[candy|brand]$ that can be bought together with the $i$-th $[candy|brand]$
+    %\item \[ k[i] = \begin{cases}
+    %  \text{\# of candies of $brand[i]$}, & \text{if a brand}\\
+    %  1, & \text{if a candy}
+    %\end{cases}
+    %  \]
     \item With this, the constraint discussed in the previous slide is solved.
   \end{itemize}
 \end{frame}
