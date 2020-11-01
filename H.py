@@ -1,7 +1,7 @@
 n = int(input())
-a = input().split()
+beginning = input().split()
 m = int(input())
-b = input().split()
+ending = input().split()
 
 for i in reversed(range(n)):
     suf = a[i:]
