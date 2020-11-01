@@ -1,22 +1,16 @@
 \section{G}%
-\label{sec:g}
+\label{sec:G}
 
 \begin{frame}
-  \frametitle{Problem G: Size Constraints}
-
+  \frametitle{Problem G: Glorious Lights!}
   \begin{itemize}
-    \item First solve at 00:38 by \textbf{backslash7} (Matthew Davis, Nicholas Glaze, and Travis Baylor)
-    \item We want to change the minimum number of elements in $a$ such that $b$ never occurs as a continuous subsegment
-    \item \textbf{Insight:} since there are so many numbers that are allowed as sizes, we can get rid of any occurrence
-    \item Let's go left to right until we find the first occurrence of $b$. Clearly, we must change something.
-      \begin{itemize}
-        \item We can greedily choose to change the last element of the occurrence. It still gets rid of this occurrence, and ``has the most potential''
-          to remove future occurrences
-      \end{itemize}
-    \item \textbf{Potential pitfall:} $b$ can be longer than $a$, in which case the answer is always 0
+    \item First solve at 00:17 by \textbf{alab11} (Alex Labbane)
+    \item Let $t$ be a time in $[0, 3600]$
+    \item \textbf{Insight}: light $i$ will change state when $t$ is divisible by $a_i$ \\
+    \item \textbf{Insight}: light $i$ is on at time $t$ if and only if floor$(t/a_i) \% 2 == 1$,
+      since this means it has \textit{changed} states an odd number of times.
   \end{itemize}
 \end{frame}
-
 \begin{frame}
   \frametitle{Problem G: Python Solution}
   \pyf{G}

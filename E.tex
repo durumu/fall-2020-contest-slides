@@ -4,36 +4,21 @@
 \begin{frame}
   \frametitle{Problem E: Elfenheit}
   \begin{itemize}
-    \item First solve at 01:11 by \textbf{tbolton2000} (Trever Bolton)
+    \item First solve at 01:11 by \textbf{tbolton2000} (Trevor Bolton)
     \item Given lists $a$, $b$, and $c$ (each of length $n$)
-    \item Every iteration, we do $a[i] -= c[i]$ for all $i$, and we want to know how many elements in $a$
-      are less then the corresponding element in $b$ after $k$ iterations
-    \item There may be lots of iterations, and it will be too slow to do each subtraction one
-      iteration at a time.
-    \item Observation: instead of recomputing the answer every time, we can first precompute how long each
-      neighborhood in $a$ will take to pass the corresponding temperature in $b$
+    \item Every iteration, we do $a[i] = a[i] - c[i]$ for all $i$, and we want to know how many
+      positions $i$ exist such that $a[i] < c[i]$ after $k$ iterations
+    \item \textbf{Insight:} instead of recomputing the answer every time, we can first precompute how long each
+      neighborhood in $a$ will take to pass the corresponding temperature in $c$
+    \item Let's create a new array $d[i] = (a[i] - c[i]) / b[i]$. Then $d[i]$ is the time in
+      milliseconds that it will take for the $i$-th neighborhood to begin working (in math; in code
+      we might want to take the ceiling of this)
     \item If we sort this array, we can binary search for the time we are looking for and then just see
       what index we end up at -- this is our answer!
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem E: Elfenheit (Cont.)}
-  \begin{itemize}
-    \item Observation: instead of recomputing the answer every time, we can first precompute how long each
-      neighborhood in $a$ will take to pass the corresponding temperature in $b$
-    \item Let's create a new array $d[i] = (a[i] - c[i]) / b[i]$, then $d[i]$ is the time in
-      milliseconds that it will take for the $i$-th neighborhood to begin working (in math, in code
-      we might want to take the ceiling of this)
-    \item If we sort $d$, we can binary search that array for the answer.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Problem E: C++ Solution}
-  \cppf{E}
-\end{frame}
-\begin{frame}
-  \frametitle{Problem E: C++ Solution (continued)}
-  \cppf{E2}
+  \frametitle{Problem E: Python Solution}
+  \pyf{E}
 \end{frame}

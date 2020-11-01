@@ -1,11 +1,13 @@
 n, k = map(int, input().split())
 a = [int(x) for x in input().split()]
-b = [int(x) for x in input().split()]
 
-ans = 0
-for i in range(n-k+1):
-    if a[i:i+k] == b:
-        a[i+k-1] = 0
-        ans += 1
+for t in range(3601):
+  on = 0
+  for x in a:
+    if (t//x) % 2 == 1:
+      on += 1
+  if on >= k:
+    print(t)
+    exit()
 
-print(ans)
+print('No worries Cassie!')
